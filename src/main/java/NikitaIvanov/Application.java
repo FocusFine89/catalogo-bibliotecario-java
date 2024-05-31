@@ -3,8 +3,13 @@ package NikitaIvanov;
 import NikitaIvanov.entities.Biblioteca;
 import NikitaIvanov.entities.Libro;
 import NikitaIvanov.entities.Riviste;
+import NikitaIvanov.functionalInterfaces.FileWriter;
 import com.github.javafaker.Faker;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
@@ -13,8 +18,11 @@ public class Application {
 
     public static void main(String[] args) {
 
+
         Faker faker = new Faker();
         Scanner sc = new Scanner(System.in);
+        File file = new File("src/catalogo.txt");
+
 
         String[] periodocita = {"Settimanale", "Mensile", "Semestrale"};
         Supplier<Biblioteca> libroSupplier = () -> {
@@ -27,6 +35,17 @@ public class Application {
             return new Riviste(faker.code().isbn10(), faker.book().title(), faker.book().author(), random.nextInt(1900, 2025), random.nextInt(20, 40), periodocita[random.nextInt(0, 2)]);
         };
         List<Biblioteca> catalogo = new ArrayList<>();
+
+        FileWriter writefile = list -> {
+
+            try {
+                FileUtils.writeStringToFile(file, list.getLast().toString() + System.lineSeparator(), StandardCharsets.UTF_8, true);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+
+        };
 
         boolean trigger = true;
         while (trigger) {
@@ -42,6 +61,7 @@ public class Application {
                         int scelta2 = Integer.parseInt(sc.nextLine());
                         if (scelta2 == 1) {
                             catalogo.add(libroSupplier.get());
+                            writefile.writeFile(catalogo);
                             System.out.println("Libro aggiungo!");
                             System.out.println("Catalogo: ");
                             for (int i = 0; i < catalogo.size(); i++) {
@@ -60,6 +80,7 @@ public class Application {
                                 System.out.println("Anno pubblicazione: ");
                                 int anno = Integer.parseInt(sc.nextLine());
                                 catalogo.add(new Libro(autore, genere, faker.code().isbn10(), titolo, anno, pagine));
+                                writefile.writeFile(catalogo);
                                 System.out.println("Libro aggiungo!");
                                 System.out.println("Catalogo: ");
                                 for (int i = 0; i < catalogo.size(); i++) {
@@ -81,6 +102,7 @@ public class Application {
                         int scelta2 = Integer.parseInt(sc.nextLine());
                         if (scelta2 == 1) {
                             catalogo.add(rivistaSupplier.get());
+                            writefile.writeFile(catalogo);
                             System.out.println("Rivista aggiunta!");
                             System.out.println("Catalogo: ");
                             for (int i = 0; i < catalogo.size(); i++) {
@@ -99,6 +121,7 @@ public class Application {
                                 System.out.println("Anno di pubblicazione:");
                                 int anno = Integer.parseInt(sc.nextLine());
                                 catalogo.add(new Riviste(faker.code().isbn10(), titolo, autore, anno, pagine, period));
+                                writefile.writeFile(catalogo);
                                 for (int i = 0; i < catalogo.size(); i++) {
                                     System.out.println(catalogo.get(i));
                                 }

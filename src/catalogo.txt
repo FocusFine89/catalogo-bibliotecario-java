@@ -1,0 +1,5 @@
+
+Libro{genere='Comic/Graphic Novel', isbn='1886401314', titolo='The Violent Bear It Away', autore='Ezekiel Gleason', annoPubblicazione=1986, pagine=243}
+Libro{genere='Suspense/Thriller', isbn='0672109212', titolo='As I Lay Dying', autore='Mr. Courtney Schmidt', annoPubblicazione=1905, pagine=36}
+Riviste{periodicita='Settimanale', autore='Ms. Darell Greenfelder', isbn='0495070017', titolo='Time To Murder And Create', annoPubblicazione=2004, pagine=28}
+Riviste{periodicita='Mensile', autore='Jonathon Stiedemann', isbn='1773755080', titolo='The Proper Study', annoPubblicazione=1908, pagine=37}
