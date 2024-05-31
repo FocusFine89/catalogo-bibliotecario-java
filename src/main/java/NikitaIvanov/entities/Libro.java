@@ -1,16 +1,13 @@
 package NikitaIvanov.entities;
 
-import java.util.Date;
-
 public class Libro extends Biblioteca {
     //Attributi
-    protected String autore;
+
     protected String genere;
 
     //Costruttori
-    public Libro(String autore, String genere, String isbn, String titolo, Date annoPubblicazione, int pagine) {
-        super(isbn, titolo, annoPubblicazione, pagine);
-        this.autore = autore;
+    public Libro(String autore, String genere, String isbn, String titolo, int annoPubblicazione, int pagine) {
+        super(isbn, titolo, autore, annoPubblicazione, pagine);
         this.genere = genere;
     }
     //Metodi
@@ -23,5 +20,15 @@ public class Libro extends Biblioteca {
         return genere;
     }
 
-
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "genere='" + genere + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", titolo='" + titolo + '\'' +
+                ", autore='" + autore + '\'' +
+                ", annoPubblicazione=" + annoPubblicazione +
+                ", pagine=" + pagine +
+                '}';
+    }
 }
