@@ -49,7 +49,7 @@ public class Application {
 
         boolean trigger = true;
         while (trigger) {
-            System.out.println("1.Aggiungi Libro\n 2.Aggiungi Rivista\n3.Rimozione tramite ISBN\n4.Ricerca ISBN\n5.Ricerca per anno pubblicazione\n6.Ricerca per autore\n0.esci");
+            System.out.println("1.Aggiungi Libro\n2.Aggiungi Rivista\n3.Rimozione tramite ISBN\n4.Ricerca ISBN\n5.Ricerca per anno pubblicazione\n6.Ricerca per autore\n0.esci");
             int scelta = Integer.parseInt(sc.nextLine());
             switch (scelta) {
                 case 0:
@@ -57,12 +57,12 @@ public class Application {
                     break;
                 case 1:
                     while (true) {
-                        System.out.println("1.Aggiungere Libro random\n 2.Aggiungere Libro manualmente\n0.Esci");
+                        System.out.println("1.Aggiungere Libro random\n2.Aggiungere Libro manualmente\n0.Esci");
                         int scelta2 = Integer.parseInt(sc.nextLine());
                         if (scelta2 == 1) {
                             catalogo.add(libroSupplier.get());
                             writefile.writeFile(catalogo);
-                            System.out.println("Libro aggiungo!");
+                            System.out.println("Libro aggiunto!");
                             System.out.println("Catalogo: ");
                             for (int i = 0; i < catalogo.size(); i++) {
                                 System.out.println(catalogo.get(i));
@@ -81,7 +81,7 @@ public class Application {
                                 int anno = Integer.parseInt(sc.nextLine());
                                 catalogo.add(new Libro(autore, genere, faker.code().isbn10(), titolo, anno, pagine));
                                 writefile.writeFile(catalogo);
-                                System.out.println("Libro aggiungo!");
+                                System.out.println("Libro aggiunto!");
                                 System.out.println("Catalogo: ");
                                 for (int i = 0; i < catalogo.size(); i++) {
                                     System.out.println(catalogo.get(i));
@@ -98,7 +98,7 @@ public class Application {
 
                 case 2:
                     while (true) {
-                        System.out.println("1.Aggiungere Rivista random\n 2.Aggiungere Rivista manualmente\n0.Esci");
+                        System.out.println("1.Aggiungere Rivista random\n2.Aggiungere Rivista manualmente\n0.Esci");
                         int scelta2 = Integer.parseInt(sc.nextLine());
                         if (scelta2 == 1) {
                             catalogo.add(rivistaSupplier.get());
